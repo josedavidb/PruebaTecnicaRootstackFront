@@ -19,6 +19,9 @@ export class AuthService extends BaseService{
 	optionsHttp:Object = {
 		withCredentials: true,
 	}
+
+	isLogged = false;
+
   constructor(http: HttpClient) { 
     super(http)
   }
@@ -37,6 +40,8 @@ export class AuthService extends BaseService{
 						this.key = data;
             this.token = 'Token ' + this.key.key;
 						this.access = true;
+						localStorage.setItem('tokenUser', this.token)
+						this.isLogged = true;
 						observer.next(data);
 						observer.complete(true);
           } else {
@@ -68,7 +73,13 @@ export class AuthService extends BaseService{
         observer.complete();
   		});
   	}
-  }
+	}
+
+	
+	public logout(){
+		localStorage.removeItem('tokenUser');
+	
+	}
 
 
 }

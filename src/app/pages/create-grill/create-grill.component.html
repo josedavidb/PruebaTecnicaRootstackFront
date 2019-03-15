@@ -1,0 +1,57 @@
+<header id="header">
+
+  <div class="limiter">
+      <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+  <form class="login100-form" (ngSubmit)="createGrill()" #createGrillForm="ngForm">
+      <span class="login100-form-title p-b-49">
+          Crear barbacoa
+        </span>
+    <div class="wrap-input100 validate-input m-b-23">
+      <span class="label-input100">Modelo de tu barbacoa</span>
+      <input type="text" class="input100" name="model" [(ngModel)]="newGrill.model" placeholder="Ingresa el modelo de tu barbacoa">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-23">
+        <span class="label-input100">Descripcion de tu barbacoa</span>
+        <input type="text" class="input100" name="model" [(ngModel)]="newGrill.description" placeholder="Ingresa la descripcion">
+      </div>
+
+      <div class="wrap-input100 validate-input m-b-23">
+        <span class="label-input100">Codigo postal (Ubicacion)</span>
+        <input type="text" class="input100" name="model" [(ngModel)]="newGrill.zip_code" placeholder="Ingresa la ubicacion">
+      </div>
+
+      <div class="wrap-input100 validate-input m-b-23">
+          <span class="label-input100">Ancho</span>
+          <input type="number" class="input100" name="model" [(ngModel)]="newGrill.width" placeholder="Ingresa el ancho">
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-23">
+          <span class="label-input100">Alto</span>
+          <input type="number" class="input100" name="model" [(ngModel)]="newGrill.height" placeholder="Ingresa el alto">
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-23">
+          <span class="label-input100">Peso</span>
+          <input type="number" class="input100" name="model" [(ngModel)]="newGrill.weight" placeholder="Ingresa el peso">
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-23">
+          <span class="label-input100">Color</span>
+          <input type="text" class="input100" name="model" [(ngModel)]="newGrill.color" placeholder="Ingresa el color">
+        </div>
+        <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button class="login100-form-btn" type="submit">
+                Crear
+              </button>
+            </div>
+          </div>
+  </form>
+        </div>
+      </div>
+  </div>
+  
+  </header>

@@ -9,13 +9,19 @@
     
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#about" class="page-scroll">Acerca de nosotros</a></li>
-        <li><a href="#services" class="page-scroll">Servicios</a></li>
-        <li><a href="#contact" class="page-scroll">Contacto</a></li>
-        <li><a routerLink="registro" class="page-scroll">Registrate</a></li>
-        <li><a routerLink="login" class="page-scroll">Ingresa</a></li>
-      </ul>
+        <div *ngIf="auth.isLogged; else loggedOut">
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngFor="let link of linksMenuLogged"><a routerLink={{link.router}} class="page-scroll">{{link.name}}</a></li>
+                <li><a [routerLink]="" (click)="logout()">Cerrar sesion</a></li>
+              </ul>
+          </div>
+          
+          <ng-template #loggedOut>
+              <ul class="nav navbar-nav navbar-right">
+                  <li *ngFor="let link of linksMenuNotLogged"><a routerLink={{link.router}} class="page-scroll">{{link.name}}</a></li>
+                </ul>
+          </ng-template>
+      
     </div>
     <!-- /.navbar-collapse --> 
   </div>

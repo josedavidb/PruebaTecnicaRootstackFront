@@ -18,7 +18,7 @@ const httpOptions = {
 @Injectable()
 export class BaseService {
 
-    API_URL:string = "http://127.0.0.1:8000/api/"
+    API_URL:string = "https://grillbooking-api.herokuapp.com/api/"
 
     /**
      *Creates an instance of BaseService.
