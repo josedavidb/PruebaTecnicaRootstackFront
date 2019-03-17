@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
   ]
 
   isLoggedIn:boolean;
-  constructor(private auth:AuthService,private router: Router) {
+  constructor(public auth:AuthService,private router: Router) {
     if(localStorage.getItem('tokenUser')){
       this.auth.isLogged = true
     }
