@@ -5,6 +5,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import {Reservationmodel} from '../models/reservation.model';
+import {AuthService} from './auth.service';
+
+// operators
+import "rxjs/add/operator/catch"
+import "rxjs/add/observable/throw"
+import "rxjs/add/operator/map"
+
 
 
 @Injectable({
@@ -13,27 +20,30 @@ import {Reservationmodel} from '../models/reservation.model';
 export class BookingService extends BaseService{
 
   static readonly BOOKING_ENDPOINT = 'booking/';
-  optionsHttp:Object = {
-		withCredentials: true,
+
+  optionsHttp:any = {
+    withCredentials: true,
+    headers: null,
 	}
-  constructor(http: HttpClient) { 
+  constructor(http: HttpClient, private auth:AuthService) { 
     super(http)
   }
 
-    public makeReservation(reservation:Reservationmodel) : Observable<Object> {
-  	    return Observable.create(observer => {
+    public makeReservation(reservation:Reservationmodel) {
+      this.optionsHttp.headers = new HttpHeaders().set('Authorization', this.auth.token);
+
+  	    return this.addBase(reservation,BookingService.BOOKING_ENDPOINT,this.optionsHttp)
+        .catch(error => { 
+          return this.handleError1(error);
+        });
   		    // Petición a backend
-  	        this.addBase(reservation,BookingService.BOOKING_ENDPOINT,this.optionsHttp)
-        .subscribe( data => {
-        if (data) {			
-	        console.log(data);
-		    observer.next(data);
-		    observer.complete(true);
-        }else{
-		    observer.next(false);
-        }
-	    }, err => console.error(err))
-			
-	    });
+
+
+    }
+
+    private handleError1(error: any) { 
+      console.log('AJAA');
+      let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+      return Observable.throw(error);
     }
 }

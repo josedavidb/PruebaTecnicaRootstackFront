@@ -23,8 +23,6 @@ export class GrillService extends BaseService{
   }
 
   public createGrill(grill:Grillmodel) : Observable<Object> {
-    console.log('El token es:');
-    console.log(this.auth.token)
     this.optionsHttp.headers = new HttpHeaders().set('Authorization', this.auth.token);
   		return Observable.create(observer => {
   			// Petición a backend
@@ -41,5 +39,25 @@ export class GrillService extends BaseService{
 				}, err => console.error(err))
 				
 			});
-  	}
+    }
+    
+    public obtainGrillList(): Observable<Object> {
+      console.log('HOLA');
+      this.optionsHttp.headers = new HttpHeaders().set('Authorization', this.auth.token);
+      return Observable.create(observer => {
+  			// Petición a backend
+  			this.getBase(GrillService.GRILL_ENDPOINT,this.optionsHttp)
+        .subscribe( data => {
+          if (data) {
+						
+						console.log(data);
+						observer.next(data);
+						observer.complete(true);
+          } else {
+						observer.next(false);
+          }
+				}, err => console.error(err))
+				
+			});
+    }
 }

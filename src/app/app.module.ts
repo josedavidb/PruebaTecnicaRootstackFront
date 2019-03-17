@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -11,7 +10,12 @@ import {RegisterComponentModule} from './pages/register/register.module';
 import {LoginComponentModule} from './pages/login/login.module';
 import {CreateGrillComponentModule} from './pages/create-grill/create-grill.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReservationComponent } from './pages/reservation/reservation.component';
+import { ReservationComponentModule } from './pages/reservation/reservation.module';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 @NgModule({
@@ -20,7 +24,6 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     HeaderComponent,
     FooterComponent,
     IndexComponent,
-    ReservationComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,10 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     LoginComponentModule,
     CreateGrillComponentModule,
     HttpClientModule,
+    ReservationComponentModule,
+    AmazingTimePickerModule,
+    NgbModule,
+    NgbPaginationModule, NgbAlertModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

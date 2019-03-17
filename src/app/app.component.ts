@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'GrillBooking';
+
+  constructor(private auth:AuthService){
+    if (localStorage.getItem('tokenUser')){
+      this.auth.token = localStorage.getItem('tokenUser');
+    }
+  }
+  
 }
+
